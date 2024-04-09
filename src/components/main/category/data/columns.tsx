@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useAppSelector } from "@/state/store"
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu"
-import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { ColumnDef } from "@tanstack/react-table"
+import { DotsHorizontalIcon } from "@radix-ui/react-icons"
+import { ColumnDef, Row } from "@tanstack/react-table"
 import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
@@ -15,7 +15,9 @@ export type Category = {
     updatedAt: Date
     __v: number
 }
-
+interface CardProps {
+    row: Row<Category>; // Define the type of the row prop
+}
 
 
 export const columns: ColumnDef<Category>[] = [
@@ -59,14 +61,14 @@ export const columns: ColumnDef<Category>[] = [
     },
 ]
 
-export default function Card({ row }: any) {
+export default function Card({row}:CardProps ) {
     const category = row.original
     const navigate = useNavigate();
     const jsonString = JSON.stringify(useAppSelector(state => state.auth));
     const user = JSON.parse(jsonString);
     const loc = useLocation();
 
-    async function handleDelete(id: any) {
+    async function handleDelete(id: string) {
         'use server';
 
         await fetch(`http://localhost:2000/categories/${id}`, {

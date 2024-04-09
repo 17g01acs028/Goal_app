@@ -72,7 +72,7 @@ export default function ViewGoals() {
           </span>
         </Button>
       </CardHeader>
-      <DataTable columns={columns} data={data}  />
+      <DataTable columns={columns} data={data} filter="" columnName=""/>
     </>
 
   )

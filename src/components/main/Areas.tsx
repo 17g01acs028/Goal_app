@@ -1,16 +1,12 @@
 import {
   ChevronLeft,
   ChevronRight,
-  Copy,
-  CreditCard,
   File,
   ListFilter,
   MoreVertical,
-  Paperclip,
-  Truck,
+  Paperclip
 } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -248,7 +244,7 @@ const Areas = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <DataTable columns={columns} data={data}  />
+                <DataTable columns={columns} data={data} columnName="" filter=""  />
               </CardContent>
             </Card>
           </TabsContent>
@@ -262,7 +258,7 @@ const Areas = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-              <DataTable columns={columns} data={completeData}  />
+              <DataTable columns={columns} data={completeData} columnName="" filter=""  />
               </CardContent>
             </Card>
           </TabsContent>
@@ -277,7 +273,7 @@ const Areas = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-              <DataTable columns={columns} data={inCompleteData}  />
+              <DataTable columns={columns} data={inCompleteData} columnName="" filter=""  />
               </CardContent>
             </Card>
           </TabsContent>

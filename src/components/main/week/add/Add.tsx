@@ -5,12 +5,12 @@ import { ArrowBigLeftIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import Datepicker from "react-tailwindcss-datepicker";
+import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 
 const AddWeek = () => {
-    const [value, setValue] = useState({
+    const [value, setValue] = useState<DateValueType>({
         startDate: new Date(),
-        endDate: new Date().setMonth(11)
+        endDate: new Date(new Date().setMonth(11))
     });
 
     const handleValueChange = (newValue:any) => {

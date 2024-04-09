@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/switch"
 import { useAppSelector } from "@/state/store"
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu"
 import {  DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef, Row } from "@tanstack/react-table"
 import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
@@ -25,6 +25,9 @@ export type Goal = {
     __v: number
 }
 
+interface CardProps {
+    row: Row<Goal>; // Define the type of the row prop
+}
 
 
 export const columns: ColumnDef<Goal>[] = [
@@ -112,7 +115,7 @@ export const columns: ColumnDef<Goal>[] = [
     },
 ]
 
-export default function Card({ row }) {
+export default function Card({ row }:CardProps) {
     const goal = row.original
     const navigate = useNavigate();
     const jsonString = JSON.stringify(useAppSelector(state => state.auth));
@@ -120,7 +123,7 @@ export default function Card({ row }) {
     const loc =useLocation();
     
 
-    async function handleSubmit(id: string, completed: string) {
+    async function handleSubmit(id: string, completed: boolean) {
         'use server'; 
         const values = {completed:!completed};
 

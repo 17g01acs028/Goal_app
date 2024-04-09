@@ -75,7 +75,7 @@ export default function ViewWeeks() {
           </span>
         </Button>
       </CardHeader>
-      <DataTable columns={columns} data={data}  />
+      <DataTable columns={columns} data={data} columnName="" filter="" />
     </>
 
   )

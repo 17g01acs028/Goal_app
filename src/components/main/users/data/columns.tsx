@@ -4,7 +4,7 @@ import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuS
 import { useAppSelector } from "@/state/store"
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu"
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef, Row } from "@tanstack/react-table"
 import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
@@ -24,7 +24,9 @@ export type User = {
     __v: number
 }
 
-
+interface CardProps {
+    row: Row<User>; // Define the type of the row prop
+}
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -103,14 +105,14 @@ export const columns: ColumnDef<User>[] = [
     },
 ]
 
-export default function Card({ row }: any) {
+export default function Card({ row }: CardProps) {
   const user = row.original
   const navigate = useNavigate();
   const loc = useLocation();
   const jsonString = JSON.stringify(useAppSelector(state => state.auth));
   const users = JSON.parse(jsonString);
 
-  async function handleDelete(id: any) {
+  async function handleDelete(id: string) {
     'use server'; 
     await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/users/${id}`, {
         method: "delete",
