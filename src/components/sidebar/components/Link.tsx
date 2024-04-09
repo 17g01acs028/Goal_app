@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/state/store';
-import { Home, LineChart, Package, Settings, Settings2, ShoppingCart, Users } from 'lucide-react'
+import { Home, LineChart, Package, Settings2, ShoppingCart, Users } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Link = () => {

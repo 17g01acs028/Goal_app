@@ -43,7 +43,7 @@ interface DataTableProps<TData, TValue> {
   columnName:string
 }
 
-export function DataTable<TData, TValue>({columns,data,search, reloadData,filter,columnName}: DataTableProps<TData, TValue>){
+export function DataTable<TData, TValue>({columns,data,filter,columnName}: DataTableProps<TData, TValue>){
 
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
