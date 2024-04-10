@@ -25,7 +25,7 @@ const AddGoal = () => {
     useEffect(() => {
         (async () => { // Wrap the async function in parentheses to invoke it
             try {
-                const response = await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/categories/`, {
+                const response = await fetch(`${import.meta.env.VITE_DB_HOST}/categories/`, {
                     method: "GET",
                     headers: {
                         'Accept': 'application/json',
@@ -42,7 +42,7 @@ const AddGoal = () => {
                 setCategoryData(data);
 
 
-                const response2 = await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/weeks/user/${id}`, {
+                const response2 = await fetch(`${import.meta.env.VITE_DB_HOST}/weeks/user/${id}`, {
                     method: "GET",
                     headers: {
                         'Accept': 'application/json',
@@ -59,7 +59,7 @@ const AddGoal = () => {
                 setWeekData(data2);
 
 
-                const response3 = await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/user/${id}`, {
+                const response3 = await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/${id}`, {
                     method: "GET",
                     headers: {
                         'Accept': 'application/json',
@@ -101,7 +101,7 @@ const AddGoal = () => {
             return;
         }
 
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/goals/`, {
             method: "post",
             headers: {
                 'Accept': 'application/json',

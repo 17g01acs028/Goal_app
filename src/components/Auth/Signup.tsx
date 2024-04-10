@@ -23,7 +23,7 @@ const Signup = () => {
 
         console.log(values);
 
-        const signUpResponse = await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/auth/register`, {
+        const signUpResponse = await fetch(`${import.meta.env.VITE_DB_HOST}/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(Object.fromEntries(values)),

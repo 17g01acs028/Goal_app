@@ -29,7 +29,7 @@ export default function ViewWeeks() {
   useEffect(() => {
     async function fetchData() {
       try {
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/weeks/user/${user.user._id}`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/weeks/user/${user.user._id}`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',

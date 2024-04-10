@@ -70,7 +70,7 @@ const UpdateUserStatus = () => {
     useEffect(() => {
         (async () => { // Wrap the async function in parentheses to invoke it
             try {
-                const response = await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/users/${id}`, {
+                const response = await fetch(`${import.meta.env.VITE_DB_HOST}/users/${id}`, {
                     method: "GET",
                     headers: {
                         'Accept': 'application/json',

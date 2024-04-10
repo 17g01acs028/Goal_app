@@ -28,7 +28,7 @@ const AddWeek = () => {
         
         const values = {...value,user:user.user._id,};
 
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/weeks/`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/weeks/`, {
             method: "post",
             headers: {
                 'Accept': 'application/json',

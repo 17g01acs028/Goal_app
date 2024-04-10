@@ -69,7 +69,7 @@ const Areas = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/user/${user && user.user._id}`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/${user && user.user._id}`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -92,7 +92,7 @@ const Areas = () => {
             console.error('There was a problem with the fetch operation:', error);
           });
 
-          await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/user/complete/${user && user.user._id}`, {
+          await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/complete/${user && user.user._id}`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -115,7 +115,7 @@ const Areas = () => {
             console.error('There was a problem with the fetch operation:', error);
           });
 
-          await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/user/incomplete/${user && user.user._id}`, {
+          await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/incomplete/${user && user.user._id}`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',

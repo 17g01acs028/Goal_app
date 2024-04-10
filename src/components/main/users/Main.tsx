@@ -27,7 +27,7 @@ export default function ViewUsers() {
   useEffect(() => {
     async function fetchData() {
       try {
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/users/`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/users/`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',

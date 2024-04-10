@@ -27,7 +27,7 @@ export default function ViewCategory() {
   useEffect(() => {
     async function fetchData() {
       try {
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/categories/`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/categories/`, {
           method: "GET",
           headers: {
             'Accept': 'application/json',

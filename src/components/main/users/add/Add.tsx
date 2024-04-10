@@ -28,7 +28,7 @@ const AddUser = () => {
             return;
         }
 
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/users/`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/users/`, {
             method: "post",
             headers: {
                 'Accept': 'application/json',

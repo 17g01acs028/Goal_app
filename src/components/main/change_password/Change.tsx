@@ -24,7 +24,7 @@ const Change = () => {
             return;
         }
 
-      await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/users/change_password/${user.user._id}`, {
+      await fetch(`${import.meta.env.VITE_DB_HOST}/users/change_password/${user.user._id}`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',

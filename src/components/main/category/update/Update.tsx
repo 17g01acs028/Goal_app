@@ -24,7 +24,7 @@ const UpdateCategory = () => {
         const values = new FormData(form);
      console.log(values.get("categoryName"));
 
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/categories/${id}`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/categories/${id}`, {
             method: "put",
             headers: {
                 'Accept': 'application/json',

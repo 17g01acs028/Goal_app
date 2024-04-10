@@ -129,7 +129,7 @@ export default function Card({ row }:CardProps) {
 
         console.log(values);
 
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/${id}`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/goals/${id}`, {
             method: "put",
             headers: {
                 'Accept': 'application/json',
@@ -158,7 +158,7 @@ export default function Card({ row }:CardProps) {
     async function handleDelete(id: string) {
         'use server'; 
        
-        await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/goals/${id}`, {
+        await fetch(`${import.meta.env.VITE_DB_HOST}/goals/${id}`, {
             method: "delete",
             headers: {
                 'Accept': 'application/json',
