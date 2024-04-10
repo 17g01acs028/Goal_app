@@ -27,7 +27,7 @@ const Login = () => {
 
         console.log(values);
 
-        const loggedInResponse = await fetch(`${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_DB_PORT}/auth/login`, {
+        const loggedInResponse = await fetch(`${import.meta.env.VITE_DB_HOST}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(Object.fromEntries(values)),
