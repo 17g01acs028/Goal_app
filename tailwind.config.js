@@ -7,6 +7,16 @@ export default {
   "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
 ],
   theme: {
+    screens:{
+      'sm': '640px',
+      'md': '765px',
+      'lg':'1028px',
+      'xl':'1280px',
+      '2xl':'1536px',
+      'xl2':'1340px',
+  
+    }
+    ,
     container: {
       center: true,
       padding: '2rem',

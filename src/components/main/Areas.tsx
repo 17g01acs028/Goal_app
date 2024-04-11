@@ -1,8 +1,6 @@
 import {
   ChevronLeft,
   ChevronRight,
-  File,
-  ListFilter,
   MoreVertical,
   Paperclip
 } from "lucide-react"
@@ -18,11 +16,8 @@ import {
 } from "@/components/ui/card"
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -37,6 +32,16 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
+
 import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { useEffect, useState } from "react"
@@ -46,45 +51,48 @@ import { DataTable } from "./components/Datatable"
 
 
 
+
+
 const Areas = () => {
   const navigate = useNavigate();
   const loc = useLocation();
   const [data, setData] = useState<Goal[]>([]);
+  const [tip, setTips] = useState(["Stay Hydrated: Drink plenty of water throughout the day, especially before, during, and after exercise to stay hydrated and maintain optimal performance.", "Set Realistic Goals: Set achievable fitness goals that are specific, measurable, attainable, relevant, and time-bound (SMART). This will help you stay motivated and track your progress effectively.", "Mix Up Your Workouts: Incorporate a variety of exercises into your routine, including cardio, strength training, flexibility exercises, and balance exercises, to work different muscle groups and prevent boredom.", "Prioritize Rest and Recovery: Allow your body time to rest and recover between workouts to prevent overtraining and reduce the risk of injury. Aim for at least 1-2 days of rest per week.", "Focus on Form: Pay attention to proper form and technique during exercises to maximize results and minimize the risk of injury. Consider working with a certified personal trainer to learn correct form.","Fuel Your Body: Eat a balanced diet rich in fruits, vegetables, lean proteins, whole grains, and healthy fats to provide your body with the nutrients it needs to perform at its best."]);
   const [completeData, setCompleteData] = useState<Goal[]>([]);
   const [inCompleteData, setInCompleteData] = useState<Goal[]>([]);
-  const [location,setlocation] =useState(loc.pathname);
+  const [location, setlocation] = useState(loc.pathname);
 
-  if(location !== loc.pathname){
+  if (location !== loc.pathname) {
     setlocation(loc.pathname);
   }
-  
+
 
   console.log(location);
   const jsonString = JSON.stringify(useAppSelector(state => state.auth));
-  const  user = JSON.parse(jsonString)
-  
- console.log("Completed"+completeData.length);
- console.log("In completed"+inCompleteData.length);
+  const user = JSON.parse(jsonString)
+
+  console.log("Completed" + completeData.length);
+  console.log("In completed" + inCompleteData.length);
 
   useEffect(() => {
     async function fetchData() {
       try {
         await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/${user && user.user._id}`, {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token,
-              }
+          method: "GET",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + user.token,
+          }
         }).then(response => {
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    const errorMessage = errorData.message || 'Something went wrong';
-                    throw new Error(errorMessage);
-                });
-            }
-            return response.json();
-          })
+          if (!response.ok) {
+            return response.json().then(errorData => {
+              const errorMessage = errorData.message || 'Something went wrong';
+              throw new Error(errorMessage);
+            });
+          }
+          return response.json();
+        })
           .then(data => {
             setData(data);
           }).catch(error => {
@@ -92,22 +100,22 @@ const Areas = () => {
             console.error('There was a problem with the fetch operation:', error);
           });
 
-          await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/complete/${user && user.user._id}`, {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token,
-              }
+        await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/complete/${user && user.user._id}`, {
+          method: "GET",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + user.token,
+          }
         }).then(response => {
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    const errorMessage = errorData.message || 'Something went wrong';
-                    throw new Error(errorMessage);
-                });
-            }
-            return response.json();
-          })
+          if (!response.ok) {
+            return response.json().then(errorData => {
+              const errorMessage = errorData.message || 'Something went wrong';
+              throw new Error(errorMessage);
+            });
+          }
+          return response.json();
+        })
           .then(data => {
             setCompleteData(data);
           }).catch(error => {
@@ -115,22 +123,22 @@ const Areas = () => {
             console.error('There was a problem with the fetch operation:', error);
           });
 
-          await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/incomplete/${user && user.user._id}`, {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token,
-              }
+        await fetch(`${import.meta.env.VITE_DB_HOST}/goals/user/incomplete/${user && user.user._id}`, {
+          method: "GET",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + user.token,
+          }
         }).then(response => {
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    const errorMessage = errorData.message || 'Something went wrong';
-                    throw new Error(errorMessage);
-                });
-            }
-            return response.json();
-          })
+          if (!response.ok) {
+            return response.json().then(errorData => {
+              const errorMessage = errorData.message || 'Something went wrong';
+              throw new Error(errorMessage);
+            });
+          }
+          return response.json();
+        })
           .then(data => {
             setInCompleteData(data);
           }).catch(error => {
@@ -142,12 +150,12 @@ const Areas = () => {
       }
       navigate("/home")
     }
-  
+
     fetchData();
   }, [location]);
 
   return (
-    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
+    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8  xl2:grid-cols-3 2xl:grid-cols-3">
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
           <Card
@@ -170,11 +178,11 @@ const Areas = () => {
             </CardHeader>
             <CardContent>
               <div className="text-xs text-muted-foreground">
-              {`${Math.round((completeData.length / data.length)*100)}% of goal are completed`}  
+                {`${Math.round((completeData.length / data.length) * 100)}% of goal are completed`}
               </div>
             </CardContent>
             <CardFooter>
-              <Progress value={(completeData.length / data.length)*100} aria-label="25% increase" />
+              <Progress value={(completeData.length / data.length) * 100} aria-label="25% increase" />
             </CardFooter>
           </Card>
           <Card x-chunk="dashboard-05-chunk-2">
@@ -184,11 +192,11 @@ const Areas = () => {
             </CardHeader>
             <CardContent>
               <div className="text-xs text-muted-foreground">
-              {`${Math.round((inCompleteData.length / data.length)*100)}% of goal are completed`} 
+                {`${Math.round((inCompleteData.length / data.length) * 100)}% of goal are completed`}
               </div>
             </CardContent>
             <CardFooter>
-              <Progress value={(inCompleteData.length / data.length)*100}aria-label="12% increase" />
+              <Progress value={(inCompleteData.length / data.length) * 100} aria-label="12% increase" />
             </CardFooter>
           </Card>
         </div>
@@ -199,41 +207,7 @@ const Areas = () => {
               <TabsTrigger value="complete">Completed</TabsTrigger>
               <TabsTrigger value="incomplete">Incomplete</TabsTrigger>
             </TabsList>
-            <div className="ml-auto flex items-center gap-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="h-7 gap-1 text-sm"
-                  >
-                    <ListFilter className="h-3.5 w-3.5" />
-                    <span className="sr-only sm:not-sr-only">Filter</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuCheckboxItem checked>
-                    All
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>
-                    Complete
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>
-                    Uncomplete
-                  </DropdownMenuCheckboxItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <Button
-                size="sm"
-                variant="outline"
-                className="h-7 gap-1 text-sm"
-              >
-                <File className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only">Export</span>
-              </Button>
-            </div>
+
           </div>
           <TabsContent value="all">
             <Card x-chunk="dashboard-05-chunk-3">
@@ -244,7 +218,7 @@ const Areas = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <DataTable columns={columns} data={data} columnName="" filter=""  />
+                <DataTable columns={columns} data={data} columnName="" filter="" />
               </CardContent>
             </Card>
           </TabsContent>
@@ -258,7 +232,7 @@ const Areas = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-              <DataTable columns={columns} data={completeData} columnName="" filter=""  />
+                <DataTable columns={columns} data={completeData} columnName="" filter="" />
               </CardContent>
             </Card>
           </TabsContent>
@@ -273,69 +247,46 @@ const Areas = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-              <DataTable columns={columns} data={inCompleteData} columnName="" filter=""  />
+                <DataTable columns={columns} data={inCompleteData} columnName="" filter="" />
               </CardContent>
             </Card>
           </TabsContent>
-          
+
         </Tabs>
       </div>
       <div>
         <Card
-          className="overflow-hidden" x-chunk="dashboard-05-chunk-4"
+          className="" x-chunk="dashboard-05-chunk-4"
         >
           <CardHeader className="flex flex-row items-start bg-muted/50">
             <div className="grid gap-0.5">
               <CardTitle className="group flex items-center gap-2 text-lg">
-                Latest News and Updates
-                
+                Fitness Tips
+
               </CardTitle>
-              <CardDescription>Date: November 23, 2023</CardDescription>
-            </div>
-            <div className="ml-auto flex items-center gap-1">
-              <Button size="sm" variant="outline" className="h-8 gap-1">
-                <Paperclip className="h-3.5 w-3.5" />
-                <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-                  News
-                </span>
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button size="icon" variant="outline" className="h-8 w-8">
-                    <MoreVertical className="h-3.5 w-3.5" />
-                    <span className="sr-only">More</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Visit Site</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <CardDescription>Please check our Fitness tips from Here</CardDescription>
             </div>
           </CardHeader>
-          <CardContent className="p-6 text-sm">
-           
+          <CardContent>
+
+            <Carousel className="w-full max-w-xs">
+              <CarouselContent>
+                {tip.map((data, index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      <Card>
+                        <CardContent className="flex aspect-square items-center justify-center p-6">
+                          {data}
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </CardContent>
-          <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
-            <div className="text-xs text-muted-foreground">
-              Updated <time dateTime="2023-11-23">November 23, 2023</time>
-            </div>
-            <Pagination className="ml-auto mr-0 w-auto">
-              <PaginationContent>
-                <PaginationItem>
-                  <Button size="icon" variant="outline" className="h-6 w-6">
-                    <ChevronLeft className="h-3.5 w-3.5" />
-                    <span className="sr-only">Previous Order</span>
-                  </Button>
-                </PaginationItem>
-                <PaginationItem>
-                  <Button size="icon" variant="outline" className="h-6 w-6">
-                    <ChevronRight className="h-3.5 w-3.5" />
-                    <span className="sr-only">Next Order</span>
-                  </Button>
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </CardFooter>
         </Card>
       </div>
     </main>
