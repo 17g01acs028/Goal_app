@@ -1,9 +1,3 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  MoreVertical,
-  Paperclip
-} from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,17 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "@/components/ui/pagination"
+
 import { Progress } from "@/components/ui/progress"
 import {
   Tabs,
