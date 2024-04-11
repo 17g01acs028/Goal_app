@@ -251,9 +251,8 @@ const Areas = () => {
               <CardDescription>Please check our Fitness tips from Here</CardDescription>
             </div>
           </CardHeader>
-          <CardContent>
-
-            <Carousel className="w-full max-w-xs">
+          <CardContent >
+            <Carousel className="w-full max-w-lg 2xl:max-w-2xl">
               <CarouselContent>
                 {tip.map((data, index) => (
                   <CarouselItem key={index}>
