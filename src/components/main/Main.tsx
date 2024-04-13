@@ -40,6 +40,16 @@ const MainBlog = () => {
                         </div>
                     </div>
                 </main>
+                <footer
+                    className="text-center border-t-2 lg:text-left">
+                    <div className="p-4 text-center text-neutral-700 dark:text-neutral-200">
+                        © {new Date().getFullYear()} Copyright:
+                        <a
+                            className="text-neutral-800 dark:text-neutral-400"
+                            href="#"
+                        >Health Goal Management System</a>
+                    </div>
+                </footer>
             </div >
         </div >
     )
